@@ -23,13 +23,18 @@
 
     <script>
         const boxes = document.querySelectorAll(".box");
-
+        let previousBox = null;
+    
         function highlightRandomBox() {
             boxes.forEach(box => box.style.backgroundColor = "black");
-            const randomBox = boxes[Math.floor(Math.random() * boxes.length)];
+            let randomBox;
+            do {
+                randomBox = boxes[Math.floor(Math.random() * boxes.length)];
+            } while (randomBox === previousBox);
             randomBox.style.backgroundColor = randomBox.dataset.color;
+            previousBox = randomBox;
         }
-
+    
         setInterval(highlightRandomBox, 2000);
         highlightRandomBox();
     </script>
